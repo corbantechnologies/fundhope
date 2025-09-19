@@ -6,5 +6,5 @@ interface Payment {
 }
 
 export const makePayment = async (data: Payment) => {
-  await apiActions.post(`/api/v1/payments/donation-pay/`, data);
+  await apiActions.post(`/api/v1/mpesa/donation-pay/`, data);
 };

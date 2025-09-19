@@ -62,7 +62,8 @@ export const CampaignCard = ({
         <div className="relative">
           <img
             src={
-              image || "https://via.placeholder.com/400x200?text=Campaign+Image"
+              image ||
+              "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9uYXRlfGVufDB8fDB8fHww"
             }
             alt={title}
             className="w-full h-48 object-cover group-hover:scale-105 transition-smooth"

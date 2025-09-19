@@ -46,10 +46,16 @@ function CampaignDetail() {
     minimumFractionDigits: 0,
   }).format(parseFloat(campaign.target_amount));
   const raised = 0; // Replace with actual sum of donations if available
-  const progressPercentage = Math.min((raised / parseFloat(campaign.target_amount)) * 100, 100);
+  const progressPercentage = Math.min(
+    (raised / parseFloat(campaign.target_amount)) * 100,
+    100
+  );
   const endDate = new Date(campaign.end_date);
   const today = new Date("2025-09-18"); // Use new Date() in production
-  const daysLeft = Math.max(Math.ceil((endDate.getTime() - today.getTime()) / (1000 * 3600 * 24)), 0);
+  const daysLeft = Math.max(
+    Math.ceil((endDate.getTime() - today.getTime()) / (1000 * 3600 * 24)),
+    0
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -58,8 +64,18 @@ function CampaignDetail() {
           href="/campaigns"
           className="flex items-center gap-2 mb-6 text-gray-700 hover:text-gray-900"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
           Back to Campaigns
         </Link>
@@ -81,7 +97,11 @@ function CampaignDetail() {
                     : "bg-green-100 text-green-800 border-green-200"
                 }`}
               >
-                {campaign.is_closed ? "Closed" : daysLeft <= 7 ? `${daysLeft} days left` : "Active"}
+                {campaign.is_closed
+                  ? "Closed"
+                  : daysLeft <= 7
+                  ? `${daysLeft} days left`
+                  : "Active"}
               </Badge>
             </div>
           </CardHeader>
@@ -89,7 +109,10 @@ function CampaignDetail() {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <img
-                  src={campaign.image || "https://via.placeholder.com/400x200?text=Campaign+Image"}
+                  src={
+                    campaign.image ||
+                    "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9uYXRlfGVufDB8fDB8fHww"
+                  }
                   alt={campaign.title}
                   className="w-full h-48 object-cover rounded-md"
                 />
@@ -99,7 +122,9 @@ function CampaignDetail() {
                   <div className="flex items-center gap-2">
                     <Users className="h-4 w-4 text-gray-500" />
                     <div>
-                      <p className="font-medium">{campaign.organization_name}</p>
+                      <p className="font-medium">
+                        {campaign.organization_name}
+                      </p>
                       <p className="text-sm text-gray-600">Organization</p>
                     </div>
                   </div>
@@ -107,11 +132,14 @@ function CampaignDetail() {
                     <Clock className="h-4 w-4 text-gray-500" />
                     <div>
                       <p className="font-medium">
-                        {new Date(campaign.end_date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
+                        {new Date(campaign.end_date).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
                       </p>
                       <p className="text-sm text-gray-600">End Date</p>
                     </div>
@@ -147,14 +175,18 @@ function CampaignDetail() {
               </div>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600 mb-2">Description</p>
-                <p className="font-medium">{campaign.description || "No description provided"}</p>
+                <p className="font-medium">
+                  {campaign.description || "No description provided"}
+                </p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Donation Form */}
-        {!campaign.is_closed && <CreateDonation campaignIdentity={campaign.identity} />}
+        {!campaign.is_closed && (
+          <CreateDonation campaignIdentity={campaign.identity} />
+        )}
       </div>
     </div>
   );

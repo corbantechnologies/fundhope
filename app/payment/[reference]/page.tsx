@@ -360,7 +360,7 @@ function DonationPayment() {
                   Please try again or contact support.
                 </p>
                 <Button
-                  onClick={() => router.push(`/donation/${reference}/pay`)}
+                  onClick={() => router.push(`/donation/${reference}`)}
                   className="mt-4 bg-primary hover:bg-primary-hover"
                 >
                   Try Again

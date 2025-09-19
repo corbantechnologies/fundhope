@@ -50,7 +50,7 @@ function CreateDonation({ campaignIdentity }: CreateDonationProps) {
       };
       const response = await createDonation(payload);
       toast.success("Donation created successfully!");
-      router.push(`/donation/${response.reference}/pay`);
+      router.push(`/payment/${response.reference}`);
     } catch (error) {
       toast.error("Error creating donation. Please try again.");
     } finally {
