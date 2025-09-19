@@ -125,7 +125,7 @@ export const CampaignCard = ({
             <Link href={`/campaigns/${identity}`}>View Details</Link>
           </Button>
           <Button variant="default" size="sm" className="flex-1" asChild>
-            <Link href={`/campaigns/${identity}/donate`}>
+            <Link href={`/campaigns/${identity}`}>
               <Heart className="w-4 h-4" />
               Donate
             </Link>

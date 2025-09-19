@@ -50,9 +50,9 @@ export const Navigation = () => {
               Organizations
             </Link>
             <Link
-              href="/how-it-works"
+              href="/"
               className={`text-sm font-medium transition-smooth hover:text-primary ${
-                isActive("/how-it-works")
+                isActive("/")
                   ? "text-primary"
                   : "text-muted-foreground"
               }`}
@@ -63,12 +63,12 @@ export const Navigation = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm" asChild>
+            {/* <Button variant="outline" size="sm" asChild>
               <Link href="/search">
                 <Search className="w-4 h-4" />
                 Search
               </Link>
-            </Button>
+            </Button> */}
             <Button variant="secondary" size="sm" asChild>
               <Link href="/">
                 <Plus className="w-4 h-4" />
@@ -76,7 +76,7 @@ export const Navigation = () => {
               </Link>
             </Button>
             <Button variant="default" size="sm" asChild>
-              <Link href="/donate">Donate Now</Link>
+              <Link href="/campaigns">Donate Now</Link>
             </Button>
           </div>
 
@@ -107,14 +107,14 @@ export const Navigation = () => {
                 Browse Campaigns
               </Link>
               <Link
-                href="/organizations"
+                href="/"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-smooth"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Organizations
               </Link>
               <Link
-                href="/how-it-works"
+                href="/"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-smooth"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -134,7 +134,7 @@ export const Navigation = () => {
                   </Link>
                 </Button>
                 <Button size="sm" asChild>
-                  <Link href="/donate" onClick={() => setIsMenuOpen(false)}>
+                  <Link href="/campaigns" onClick={() => setIsMenuOpen(false)}>
                     Donate Now
                   </Link>
                 </Button>

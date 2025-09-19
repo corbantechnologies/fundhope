@@ -1,6 +1,7 @@
 import TanstackQueryProvider from "@/providers/TanstackQueryProvider";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import { Navigation } from "@/components/general/Navigation";
 
 export default function RootLayout({
   children,
@@ -18,7 +19,10 @@ export default function RootLayout({
       </head>
       <body>
         <Toaster position="top-center" />
-        <TanstackQueryProvider>{children}</TanstackQueryProvider>
+        <TanstackQueryProvider>
+          <Navigation />
+          {children}
+        </TanstackQueryProvider>
       </body>
     </html>
   );
