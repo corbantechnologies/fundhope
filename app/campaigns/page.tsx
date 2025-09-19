@@ -55,23 +55,6 @@ export default function Campaigns() {
     );
   }
 
-  if (campaigns.length === 0) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="max-w-md mx-auto">
-          <CardHeader>
-            <CardTitle>No Campaigns Available</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">
-              There are no active campaigns at the moment. Check back later!
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,20 +62,34 @@ export default function Campaigns() {
           All Campaigns
         </h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {campaigns.map((campaign: Campaign) => (
-            <CampaignCard
-              key={campaign.identity}
-              identity={campaign.identity}
-              title={campaign.title}
-              description={campaign.description}
-              image={campaign.image}
-              target_amount={parseFloat(campaign.target_amount)}
-              raised={campaign.amount_raised} // Replace with actual sum of donations if available
-              donors={campaign.donors}
-              end_date={campaign.end_date}
-              organization_name={campaign.organization_name}
-            />
-          ))}
+          {campaigns.length > 0 ? (
+            campaigns.map((campaign: Campaign) => (
+              <CampaignCard
+                key={campaign.identity}
+                identity={campaign.identity}
+                title={campaign.title}
+                description={campaign.description}
+                image={campaign.image}
+                target_amount={parseFloat(campaign.target_amount)}
+                raised={campaign.amount_raised}
+                donors={campaign.donors}
+                end_date={campaign.end_date}
+                organization_name={campaign.organization_name}
+              />
+            ))
+          ) : (
+              <Card className="max-w-md mx-auto">
+                <CardHeader>
+                  <CardTitle>No Campaigns Available</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">
+                    There are no active campaigns at the moment. Check back
+                    later!
+                  </p>
+                </CardContent>
+              </Card>
+          )}
         </div>
       </div>
     </div>
