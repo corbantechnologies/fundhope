@@ -343,12 +343,12 @@ function DonationPayment() {
                     M-Pesa Receipt: {donation.mpesa_receipt_number}
                   </p>
                 )}
-                <Button
+                {/* <Button
                   onClick={() => router.push(`/payment/${reference}/success`)}
                   className="mt-4 bg-green-600 hover:bg-green-700"
                 >
                   View Donation
-                </Button>
+                </Button> */}
               </div>
             )}
             {donation.payment_status === "FAILED" && (
