@@ -11,6 +11,7 @@ import { Clock, Users, DollarSign } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import CreateDonation from "@/forms/CreateDonation";
+import Link from "next/link";
 
 function CampaignDetail() {
   const { identity } = useParams();
@@ -28,12 +29,12 @@ function CampaignDetail() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-600">Campaign not found.</p>
-          <a
+          <Link
             href="/campaigns"
             className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover"
           >
             Back to Campaigns
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -53,7 +54,7 @@ function CampaignDetail() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <a
+        <Link
           href="/campaigns"
           className="flex items-center gap-2 mb-6 text-gray-700 hover:text-gray-900"
         >
@@ -61,7 +62,7 @@ function CampaignDetail() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
           Back to Campaigns
-        </a>
+        </Link>
 
         {/* Campaign Summary Card */}
         <Card className="bg-white rounded-lg shadow-sm mb-6">
