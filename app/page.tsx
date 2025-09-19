@@ -1,103 +1,306 @@
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 
-export default function Home() {
+import { useFetchCampaigns } from "@/hooks/campaigns/actions";
+import { CampaignCard } from "@/components/campaign/CampaignCard";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Heart,
+  Users,
+  Target,
+  Shield,
+  ArrowRight,
+  Building,
+  Church,
+  GraduationCap,
+} from "lucide-react";
+import Link from "next/link";
+import React from "react";
+
+interface Campaign {
+  identity: string;
+  title: string;
+  description: string | null;
+  image: string | null;
+  target_amount: string;
+  donors: number;
+  end_date: string;
+  organization_name: string;
+}
+
+function LandingPage() {
+  const {
+    isLoading: isLoadingCampaigns,
+    data: campaigns,
+    refetch: refetchCampaigns,
+  } = useFetchCampaigns();
+
+
+  // Mock stats (replace with real data if available)
+  const stats = [
+    { icon: Heart, value: "KES 2.5M+", label: "Total Raised" },
+    { icon: Users, value: "15K+", label: "Donors" },
+    { icon: Target, value: "850+", label: "Campaigns" },
+    { icon: Shield, value: "99.9%", label: "Success Rate" },
+  ];
+
+  const organizationTypes = [
+    {
+      icon: Heart,
+      title: "Non-Profit Organizations",
+      description:
+        "Charities and humanitarian organizations making a difference worldwide",
+    },
+    {
+      icon: Church,
+      title: "Religious Groups",
+      description:
+        "Churches, temples, and faith-based communities supporting their missions",
+    },
+    {
+      icon: Building,
+      title: "Community Organizations",
+      description:
+        "Local groups and associations working to improve their communities",
+    },
+    {
+      icon: GraduationCap,
+      title: "Educational Institutions",
+      description:
+        "Schools, universities, and educational programs seeking support",
+    },
+  ];
+
+  const features = [
+    {
+      icon: Shield,
+      title: "Secure & Trusted",
+      description:
+        "Advanced security measures protect every donation and campaign",
+    },
+    {
+      icon: Target,
+      title: "Goal Tracking",
+      description: "Real-time progress tracking and transparent funding goals",
+    },
+    {
+      icon: Users,
+      title: "Community Driven",
+      description:
+        "Connect with supporters and build lasting community relationships",
+    },
+  ];
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-hero overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+          style={{
+            backgroundImage: `url(https://via.placeholder.com/1200x600?text=Hero+Image)`,
+          }}
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="relative container mx-auto px-4 py-20 lg:py-32">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
+              Empower Change Through
+              <span className="bg-gradient-primary bg-clip-text">
+                {" "}
+                Giving
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+              Connect organizations with supporters to fund meaningful projects
+              and create lasting impact in communities worldwide.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary-hover"
+                asChild
+              >
+                <Link href="/campaigns">
+                  Browse Campaigns
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/start-campaign">Start Your Campaign</Link>
+              </Button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map(({ icon: Icon, value, label }) => (
+              <div key={label} className="text-center space-y-2">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-primary rounded-lg">
+                  <Icon className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <div className="text-3xl font-bold text-foreground">
+                  {value}
+                </div>
+                <div className="text-sm text-muted-foreground">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Campaigns */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Featured Campaigns
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Discover impactful campaigns from organizations making a
+              difference in their communities
+            </p>
+          </div>
+
+          {isLoadingCampaigns ? (
+            <div className="text-center text-muted-foreground">
+              Loading campaigns...
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              {campaigns
+                ?.filter(
+                  (campaign: { identity: any; }): campaign is Campaign => !!campaign.identity
+                )
+                .slice(0, 3)
+                .map((campaign: Campaign) => (
+                  <CampaignCard
+                    key={campaign.identity}
+                    identity={campaign.identity}
+                    title={campaign.title}
+                    description={campaign.description}
+                    image={campaign.image}
+                    target_amount={parseFloat(campaign.target_amount)}
+                    raised={0} // Replace with actual sum of donations if available
+                    donors={campaign.donors}
+                    end_date={campaign.end_date}
+                    organization_name={campaign.organization_name}
+                  />
+                ))}
+            </div>
+          )}
+
+          <div className="text-center">
+            <Button variant="outline" size="lg" asChild>
+              <Link href="/campaigns">
+                View All Campaigns
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Organization Types */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Who We Serve
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Supporting diverse organizations in their mission to create
+              positive change
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {organizationTypes.map(({ icon: Icon, title, description }) => (
+              <Card
+                key={title}
+                className="text-center hover:shadow-medium transition-smooth"
+              >
+                <CardHeader className="pb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-lg mx-auto mb-4">
+                    <Icon className="w-8 h-8 text-primary-foreground" />
+                  </div>
+                  <CardTitle className="text-lg">{title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">{description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Why Choose Us?
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Built with trust, transparency, and community at the core
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map(({ icon: Icon, title, description }) => (
+              <Card
+                key={title}
+                className="hover:shadow-medium transition-smooth"
+              >
+                <CardHeader>
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-success rounded-lg mb-4">
+                    <Icon className="w-6 h-6 text-success-foreground" />
+                  </div>
+                  <CardTitle>{title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-hero">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto space-y-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Ready to Make a Difference?
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Whether you&apos;re looking to support a cause or start your own
+              campaign, join thousands of changemakers already making an impact.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary-hover"
+                asChild
+              >
+                <Link href="/start-campaign">Start Your Campaign</Link>
+              </Button>
+              <Button variant="secondary" size="lg" asChild>
+                <Link href="/campaigns">Browse Campaigns</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
+
+export default LandingPage;
