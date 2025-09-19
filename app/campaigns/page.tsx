@@ -29,31 +29,35 @@ export default function Campaigns() {
 
   if (isLoadingCampaigns) return <LoadingSpinner />;
 
-  if (isErrorCampaigns || !campaigns) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="max-w-md mx-auto">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <AlertCircle className="w-6 h-6 text-red-500" />
-              Error
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">
-              Failed to load campaigns. Please try again.
-            </p>
-            <button
-              onClick={() => refetchCampaigns()}
-              className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover"
-            >
-              Retry
-            </button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  
+
+  // if (isErrorCampaigns || !campaigns) {
+  //   return (
+  //     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+  //       <Card className="max-w-md mx-auto">
+  //         <CardHeader>
+  //           <CardTitle className="flex items-center gap-2">
+  //             <AlertCircle className="w-6 h-6 text-red-500" />
+  //             Error
+  //           </CardTitle>
+  //         </CardHeader>
+  //         <CardContent>
+  //           <p className="text-gray-600">
+  //             Failed to load campaigns. Please try again.
+  //           </p>
+  //           <button
+  //             onClick={() => refetchCampaigns()}
+  //             className="mt-4 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover"
+  //           >
+  //             Retry
+  //           </button>
+  //         </CardContent>
+  //       </Card>
+  //     </div>
+  //   );
+  // }
+
+
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
