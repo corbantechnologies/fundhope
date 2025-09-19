@@ -84,9 +84,9 @@ function DonationPayment() {
     try {
       await refetchDonation();
       if (donation?.payment_status === "COMPLETED") {
-        router.push(`/donation/${reference}/success`);
+        router.push(`/payment/${reference}/success`);
       } else if (donation?.payment_status === "FAILED") {
-        router.push(`/donation/${reference}/failure`);
+        router.push(`/payment/${reference}/failure`);
       } else {
         toast.success("Payment is still pending. Please try again.");
       }
@@ -344,7 +344,7 @@ function DonationPayment() {
                   </p>
                 )}
                 <Button
-                  onClick={() => router.push(`/donation/${reference}/success`)}
+                  onClick={() => router.push(`/payment/${reference}/success`)}
                   className="mt-4 bg-green-600 hover:bg-green-700"
                 >
                   View Donation
@@ -360,7 +360,7 @@ function DonationPayment() {
                   Please try again or contact support.
                 </p>
                 <Button
-                  onClick={() => router.push(`/donation/${reference}`)}
+                  onClick={() => router.push(`/payment/${reference}`)}
                   className="mt-4 bg-primary hover:bg-primary-hover"
                 >
                   Try Again
