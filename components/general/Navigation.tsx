@@ -70,7 +70,7 @@ export const Navigation = () => {
               </Link>
             </Button>
             <Button variant="secondary" size="sm" asChild>
-              <Link href="/start-campaign">
+              <Link href="/">
                 <Plus className="w-4 h-4" />
                 Start Campaign
               </Link>
@@ -128,10 +128,7 @@ export const Navigation = () => {
                   </Link>
                 </Button>
                 <Button variant="secondary" size="sm" asChild>
-                  <Link
-                    href="/start-campaign"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
+                  <Link href="/" onClick={() => setIsMenuOpen(false)}>
                     <Plus className="w-4 h-4" />
                     Start Campaign
                   </Link>

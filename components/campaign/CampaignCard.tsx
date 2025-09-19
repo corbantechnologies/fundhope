@@ -58,7 +58,7 @@ export const CampaignCard = ({
 
   return (
     <Card className="group hover:shadow-large transition-smooth cursor-pointer overflow-hidden">
-      <Link href={`/campaign/${identity}`}>
+      <Link href={`/campaigns/${identity}`}>
         <div className="relative">
           <img
             src={
@@ -84,7 +84,7 @@ export const CampaignCard = ({
           <p className="text-sm text-muted-foreground font-medium">
             {organization_name}
           </p>
-          <Link href={`/campaign/${identity}`}>
+          <Link href={`/campaigns/${identity}`}>
             <h3 className="font-semibold text-lg line-clamp-2 group-hover:text-primary transition-smooth">
               {title}
             </h3>
@@ -122,10 +122,10 @@ export const CampaignCard = ({
       <CardFooter className="pt-0">
         <div className="flex gap-2 w-full">
           <Button variant="outline" size="sm" className="flex-1" asChild>
-            <Link href={`/campaign/${identity}`}>View Details</Link>
+            <Link href={`/campaigns/${identity}`}>View Details</Link>
           </Button>
           <Button variant="default" size="sm" className="flex-1" asChild>
-            <Link href={`/campaign/${identity}/donate`}>
+            <Link href={`/campaigns/${identity}/donate`}>
               <Heart className="w-4 h-4" />
               Donate
             </Link>

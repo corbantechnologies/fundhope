@@ -26,6 +26,7 @@ interface Campaign {
   image: string | null;
   target_amount: string;
   donors: number;
+  amount_raised: number;
   end_date: string;
   organization_name: string;
 }
@@ -36,7 +37,6 @@ function LandingPage() {
     data: campaigns,
     refetch: refetchCampaigns,
   } = useFetchCampaigns();
-
 
   // Mock stats (replace with real data if available)
   const stats = [
@@ -96,7 +96,7 @@ function LandingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-hero overflow-hidden">
+      <section className="relative bg-primary overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
           style={{
@@ -107,10 +107,7 @@ function LandingPage() {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
               Empower Change Through
-              <span className="bg-gradient-primary bg-clip-text">
-                {" "}
-                Giving
-              </span>
+              <span className="bg-gradient-primary bg-clip-text text-white"> Giving</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
               Connect organizations with supporters to fund meaningful projects
@@ -128,7 +125,7 @@ function LandingPage() {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link href="/start-campaign">Start Your Campaign</Link>
+                <Link href="/">Start Your Campaign</Link>
               </Button>
             </div>
           </div>
@@ -175,7 +172,8 @@ function LandingPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {campaigns
                 ?.filter(
-                  (campaign: { identity: any; }): campaign is Campaign => !!campaign.identity
+                  (campaign: { identity: any }): campaign is Campaign =>
+                    !!campaign.identity
                 )
                 .slice(0, 3)
                 .map((campaign: Campaign) => (
@@ -186,7 +184,7 @@ function LandingPage() {
                     description={campaign.description}
                     image={campaign.image}
                     target_amount={parseFloat(campaign.target_amount)}
-                    raised={0} // Replace with actual sum of donations if available
+                    raised={campaign.amount_raised}
                     donors={campaign.donors}
                     end_date={campaign.end_date}
                     organization_name={campaign.organization_name}
@@ -290,7 +288,7 @@ function LandingPage() {
                 className="bg-primary hover:bg-primary-hover"
                 asChild
               >
-                <Link href="/start-campaign">Start Your Campaign</Link>
+                <Link href="/">Start Your Campaign</Link>
               </Button>
               <Button variant="secondary" size="lg" asChild>
                 <Link href="/campaigns">Browse Campaigns</Link>
