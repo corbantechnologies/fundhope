@@ -6,6 +6,7 @@ import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { CampaignCard } from "@/components/campaign/CampaignCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import { error } from "console";
 
 interface Campaign {
   identity: string;
@@ -29,7 +30,7 @@ export default function Campaigns() {
 
   if (isLoadingCampaigns) return <LoadingSpinner />;
 
-  
+  console.log(isErrorCampaigns)
 
   // if (isErrorCampaigns || !campaigns) {
   //   return (
